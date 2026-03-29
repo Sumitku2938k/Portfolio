@@ -1,16 +1,46 @@
-# React + Vite
+# Sumit's Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the repository for my personal portfolio website! This project serves as a central hub to showcase my skills, experience, and the software development projects I've built.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This project is built using modern web technologies:
 
-## React Compiler
+- **Framework**: React
+- **Build Tool**: Vite
+- **Styling**: CSS / Tailwind CSS (Update based on what you are using)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the ESLint configuration
+- **About Me**: A brief introduction to my background and technical expertise.
+- **Projects**: A curated list of my best work with links to live demos and source code.
+- **Skills**: A summary of my technical skills and the tools I use on a daily basis.
+- **Contact**: Links to my social profiles and an easy way to get in touch.
+- **Responsive Design**: Fully responsive layout that provides a great experience across all devices.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Getting Started
+
+To run this project locally, follow these simple steps:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/Portfolio.git
+   cd Portfolio
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+## 📫 Let's Connect
+
+- **GitHub**: @your-username
+- **LinkedIn**: Sumit
+
+Feel free to reach out if you have any questions, want to collaborate, or just want to connect!
