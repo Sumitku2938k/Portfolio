@@ -24,7 +24,7 @@ To run this project locally, follow these simple steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/Portfolio.git
+   git clone https://github.com/Sumitku2938k/Portfolio.git
    cd Portfolio
    ```
 
@@ -40,7 +40,7 @@ To run this project locally, follow these simple steps:
 
 ## 📫 Let's Connect
 
-- **GitHub**: @your-username
-- **LinkedIn**: Sumit
+- **GitHub**: Sumitku2938k
+- **LinkedIn**: [Sumit Kumar](https://www.linkedin.com/in/sumit-kumar-b2aa90324/)
 
 Feel free to reach out if you have any questions, want to collaborate, or just want to connect!
