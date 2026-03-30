@@ -21,6 +21,7 @@ export const featuredProjects = [
     githubUrl: 'https://github.com/',
     liveUrl: 'https://example.com/',
     accent: 'from-cyan-400/30 via-sky-500/20 to-transparent',
+    label: 'Travel Platform',
   },
   {
     title: 'Medicure',
@@ -30,6 +31,7 @@ export const featuredProjects = [
     githubUrl: 'https://github.com/',
     liveUrl: 'https://example.com/',
     accent: 'from-violet-400/30 via-fuchsia-500/20 to-transparent',
+    label: 'AI Healthcare',
   },
   {
     title: 'EventNexus',
@@ -39,18 +41,8 @@ export const featuredProjects = [
     githubUrl: 'https://github.com/',
     liveUrl: 'https://example.com/',
     accent: 'from-blue-400/30 via-indigo-500/20 to-transparent',
+    label: 'Event System',
   },
-]
-
-export const miniProjects = [
-  'Tic Tac Toe',
-  'Stone Paper Scissors',
-  'Currency Converter',
-  'QR Code Generator',
-  'Guess The Number Game',
-  'Random Quote Generator',
-  'Random Joke Generator',
-  'Weather App',
 ]
 
 export const skillGroups = [
