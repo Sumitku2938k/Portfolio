@@ -63,7 +63,12 @@ function HeroSection() {
               transition={{ duration: 0.75, delay: 0.35 }}
               className="mt-10 flex flex-wrap gap-4"
             >
-              <Button href="#projects">View Projects</Button>
+              <Button href="/assets/resume.pdf" download>
+                <span className="inline-flex items-center gap-2">
+                  <span aria-hidden="true">↓</span>
+                  <span>Download Resume</span>
+                </span>
+              </Button>
               <Button href="#contact" variant="secondary">
                 Contact Me
               </Button>
