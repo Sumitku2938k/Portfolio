@@ -1,10 +1,11 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion as Motion } from 'framer-motion'
 import BackToTop from './components/BackToTop'
 import Loader from './components/Loader'
 import Navbar from './components/Navbar'
 import ScrollProgress from './components/ScrollProgress'
 import { navItems } from './data/portfolioData'
+import { pageFade } from './lib/animations'
 
 const HeroSection = lazy(() => import('./sections/HeroSection'))
 const AboutSection = lazy(() => import('./sections/AboutSection'))
@@ -60,7 +61,12 @@ function App() {
       <AnimatePresence mode="wait">{isLoading ? <Loader key="loader" /> : null}</AnimatePresence>
 
       {!isLoading ? (
-        <div className="relative min-h-screen overflow-x-clip bg-[#050816] text-slate-100">
+        <Motion.div
+          initial={pageFade.initial}
+          animate={pageFade.animate}
+          transition={pageFade.transition}
+          className="relative min-h-screen overflow-x-clip bg-[#050816] text-slate-100"
+        >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.16),_transparent_28%),radial-gradient(circle_at_80%_20%,_rgba(139,92,246,0.18),_transparent_22%),radial-gradient(circle_at_50%_80%,_rgba(59,130,246,0.12),_transparent_24%)]" />
           <ScrollProgress />
           <Navbar activeSection={activeSection} items={navItems} />
@@ -77,7 +83,7 @@ function App() {
           </main>
 
           <BackToTop />
-        </div>
+        </Motion.div>
       ) : null}
     </>
   )

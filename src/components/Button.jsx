@@ -1,4 +1,5 @@
 import { motion as Motion } from 'framer-motion'
+import { hoverLift } from '../lib/animations'
 
 function Button({ children, href, variant = 'primary', className = '', ...props }) {
   const baseStyles =
@@ -18,7 +19,7 @@ function Button({ children, href, variant = 'primary', className = '', ...props 
   if (href) {
     return (
       <Motion.a
-        whileHover={{ y: -2, scale: 1.01 }}
+        whileHover={hoverLift}
         whileTap={{ scale: 0.98 }}
         href={href}
         className={classes}
@@ -30,7 +31,7 @@ function Button({ children, href, variant = 'primary', className = '', ...props 
   }
 
   return (
-    <Motion.button whileHover={{ y: -2, scale: 1.01 }} whileTap={{ scale: 0.98 }} className={classes} {...props}>
+    <Motion.button whileHover={hoverLift} whileTap={{ scale: 0.98 }} className={classes} {...props}>
       {children}
     </Motion.button>
   )

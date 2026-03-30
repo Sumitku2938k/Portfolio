@@ -3,6 +3,7 @@ import ProjectCard from '../components/ProjectCard'
 import SectionHeader from '../components/SectionHeader'
 import SectionWrapper from '../components/SectionWrapper'
 import { featuredProjects } from '../data/portfolioData'
+import { easeOutExpo, staggerContainer } from '../lib/animations'
 
 function ProjectsSection() {
   return (
@@ -17,7 +18,7 @@ function ProjectsSection() {
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.65, ease: easeOutExpo }}
         className="mt-14 rounded-[36px] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl sm:p-8 lg:p-10"
       >
         <div className="mx-auto max-w-3xl text-center">
@@ -31,11 +32,17 @@ function ProjectsSection() {
           </p>
         </div>
 
-        <div className="mx-auto mt-10 grid max-w-6xl gap-8 lg:grid-cols-2 xl:grid-cols-3">
+        <Motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          className="mx-auto mt-10 grid max-w-6xl gap-8 lg:grid-cols-2 xl:grid-cols-3"
+        >
           {featuredProjects.map((project) => (
             <ProjectCard key={project.title} project={project} featured />
           ))}
-        </div>
+        </Motion.div>
       </Motion.div>
     </SectionWrapper>
   )

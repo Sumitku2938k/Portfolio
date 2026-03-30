@@ -1,11 +1,13 @@
 import { motion as Motion } from 'framer-motion'
 import Button from './Button'
+import { fadeUp } from '../lib/animations'
 
 function ProjectCard({ project, featured = false }) {
   return (
     <Motion.article
-      whileHover={featured ? { y: -10, scale: 1.015 } : { y: -8 }}
-      transition={{ type: 'spring', stiffness: 260, damping: 22 }}
+      variants={fadeUp}
+      whileHover={featured ? { y: -10, scale: 1.03 } : { y: -8, scale: 1.02 }}
+      transition={{ type: 'spring', stiffness: 240, damping: 24 }}
       className={`group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl transition-shadow duration-300 ${
         featured
           ? 'min-h-[430px] shadow-[0_24px_80px_rgba(2,6,23,0.35)] hover:shadow-[0_34px_110px_rgba(14,165,233,0.16)] sm:p-8'
@@ -19,7 +21,11 @@ function ProjectCard({ project, featured = false }) {
       />
       <div className="absolute inset-px rounded-[31px] border border-white/8 bg-[linear-gradient(180deg,rgba(15,23,42,0.62),rgba(2,6,23,0.92))]" />
       {featured ? (
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent opacity-70" />
+        <Motion.div
+          animate={{ opacity: [0.45, 0.8, 0.45] }}
+          transition={{ duration: 3.2, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
+          className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent opacity-70"
+        />
       ) : null}
 
       <div className="relative flex h-full flex-col">

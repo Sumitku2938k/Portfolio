@@ -4,6 +4,7 @@ import Button from '../components/Button'
 import SectionHeader from '../components/SectionHeader'
 import SectionWrapper from '../components/SectionWrapper'
 import { socialLinks } from '../data/portfolioData'
+import { fadeLeft, fadeRight, fadeUp, staggerFast } from '../lib/animations'
 
 const initialFormState = {
   name: '',
@@ -38,17 +39,31 @@ function ContactSection() {
   return (
     <SectionWrapper id="contact" className="pt-24">
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl">
+        <Motion.div
+          variants={fadeLeft}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="rounded-[32px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl"
+        >
           <SectionHeader
             eyebrow="Contact"
             title="Let’s build something meaningful and well-crafted."
             description="If you’d like to collaborate on a web product, portfolio-quality frontend, or AI-powered application, I’d love to connect."
           />
 
-          <div className="mt-10 space-y-4">
+          <Motion.div
+            variants={staggerFast}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="mt-10 space-y-4"
+          >
             {socialLinks.map((link) => (
-              <a
+              <Motion.a
                 key={link.name}
+                variants={fadeUp}
+                whileHover={{ y: -3, scale: 1.01 }}
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
@@ -56,14 +71,27 @@ function ContactSection() {
               >
                 <span>{link.name}</span>
                 <span className="text-cyan-300">Open</span>
-              </a>
+              </Motion.a>
             ))}
-          </div>
-        </div>
+          </Motion.div>
+        </Motion.div>
 
-        <div className="rounded-[32px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl">
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
+        <Motion.div
+          variants={fadeRight}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="rounded-[32px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl"
+        >
+          <Motion.form
+            variants={staggerFast}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            onSubmit={handleSubmit}
+            className="space-y-5"
+          >
+            <Motion.div variants={fadeUp}>
               <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-200">
                 Name
               </label>
@@ -73,12 +101,12 @@ function ContactSection() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your name"
-                className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-cyan-300/40"
+                className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none transition duration-300 placeholder:text-slate-500 focus:border-cyan-300/40 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.08)]"
                 required
               />
-            </div>
+            </Motion.div>
 
-            <div>
+            <Motion.div variants={fadeUp}>
               <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-200">
                 Email
               </label>
@@ -89,12 +117,12 @@ function ContactSection() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="you@example.com"
-                className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-cyan-300/40"
+                className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none transition duration-300 placeholder:text-slate-500 focus:border-cyan-300/40 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.08)]"
                 required
               />
-            </div>
+            </Motion.div>
 
-            <div>
+            <Motion.div variants={fadeUp}>
               <label htmlFor="message" className="mb-2 block text-sm font-medium text-slate-200">
                 Message
               </label>
@@ -105,18 +133,18 @@ function ContactSection() {
                 onChange={handleChange}
                 rows="6"
                 placeholder="Tell me about your idea or collaboration."
-                className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-cyan-300/40"
+                className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none transition duration-300 placeholder:text-slate-500 focus:border-cyan-300/40 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.08)]"
                 required
               />
-            </div>
+            </Motion.div>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <Motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 pt-2">
               <Button type="submit">Send Message</Button>
               <a href="mailto:goutam@example.com" className="text-sm font-medium text-slate-400 transition hover:text-white">
                 goutam@example.com
               </a>
-            </div>
-          </form>
+            </Motion.div>
+          </Motion.form>
 
           {isSubmitted ? (
             <Motion.div
@@ -127,7 +155,7 @@ function ContactSection() {
               Message drafted successfully. Replace the placeholder email or connect this form to your preferred backend.
             </Motion.div>
           ) : null}
-        </div>
+        </Motion.div>
       </div>
     </SectionWrapper>
   )

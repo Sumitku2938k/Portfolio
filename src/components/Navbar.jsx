@@ -1,6 +1,7 @@
 import { AnimatePresence, motion as Motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import Button from './Button'
+import { easeOutExpo } from '../lib/animations'
 
 function Navbar({ activeSection, items }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -20,7 +21,7 @@ function Navbar({ activeSection, items }) {
       <Motion.div
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, ease: easeOutExpo }}
         className={`mx-auto max-w-7xl rounded-full border px-4 py-3 backdrop-blur-2xl transition duration-300 sm:px-6 ${
           isScrolled
             ? 'border-white/12 bg-slate-950/75 shadow-[0_20px_60px_rgba(2,6,23,0.45)]'
@@ -40,10 +41,15 @@ function Navbar({ activeSection, items }) {
                 <a
                   key={item.id}
                   href={`#${item.id}`}
+                  onMouseMove={(event) => {
+                    event.currentTarget.style.setProperty('--x', `${event.nativeEvent.offsetX}px`)
+                    event.currentTarget.style.setProperty('--y', `${event.nativeEvent.offsetY}px`)
+                  }}
                   className={`relative rounded-full px-4 py-2 text-sm font-medium transition ${
                     isActive ? 'text-white' : 'text-slate-400 hover:text-slate-200'
                   }`}
                 >
+                  <span className="pointer-events-none absolute inset-0 -z-10 rounded-full opacity-0 transition duration-300 [background:radial-gradient(90px_circle_at_var(--x,50%)_var(--y,50%),rgba(255,255,255,0.12),transparent_60%)] hover:opacity-100" />
                   {isActive ? (
                     <Motion.span
                       layoutId="nav-highlight"
@@ -83,6 +89,7 @@ function Navbar({ activeSection, items }) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.35, ease: 'easeInOut' }}
               className="overflow-hidden md:hidden"
             >
               <div className="mt-4 space-y-2 border-t border-white/10 pt-4">
