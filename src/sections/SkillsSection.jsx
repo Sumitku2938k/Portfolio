@@ -6,6 +6,7 @@ import { fadeUp, hoverLift, staggerContainer, staggerFast } from '../lib/animati
 
 function SkillsSection() {
   return (
+    //SkillsSection is a bit more complex than the other sections, so I decided to keep it as a separate component instead of lazy loading it. This way, I can ensure that the animations and layout are smooth and responsive without any loading delays.
     <SectionWrapper id="skills" className="pt-24">
       <SectionHeader
         eyebrow="Skills"
