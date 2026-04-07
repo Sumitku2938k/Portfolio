@@ -91,10 +91,10 @@ export const skillGroups = [
 export const socialLinks = [
   {
     name: 'GitHub',
-    href: 'https://github.com/',
+    href: 'https://github.com/Sumitku2938k/',
   },
   {
     name: 'LinkedIn',
-    href: 'https://www.linkedin.com/',
+    href: 'https://www.linkedin.com/in/sumit-kumar-b2aa90324/',
   },
 ]
