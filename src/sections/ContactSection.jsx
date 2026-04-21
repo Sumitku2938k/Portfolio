@@ -12,16 +12,34 @@ const initialFormState = {
   message: '',
 }
 
+const emailServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const emailTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const emailPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
 function ContactSection() {
   const [formData, setFormData] = useState(initialFormState)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitState, setSubmitState] = useState({
+    status: 'idle',
+    message: '',
+  })
+
+  const isSubmitting = submitState.status === 'loading'
+  const isSubmitted = submitState.status === 'success'
 
   useEffect(() => {
     if (!isSubmitted) {
       return undefined
     }
 
-    const timeoutId = window.setTimeout(() => setIsSubmitted(false), 3000)
+    const timeoutId = window.setTimeout(
+      () =>
+        setSubmitState({
+          status: 'idle',
+          message: '',
+        }),
+      3000,
+    )
+
     return () => window.clearTimeout(timeoutId)
   }, [isSubmitted])
 
@@ -30,10 +48,62 @@ function ContactSection() {
     setFormData((current) => ({ ...current, [name]: value }))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    setIsSubmitted(true)
-    setFormData(initialFormState)
+
+    if (!emailServiceId || !emailTemplateId || !emailPublicKey) {
+      setSubmitState({
+        status: 'error',
+        message:
+          'The email service is not configured yet. Add your EmailJS keys to `.env` and try again.',
+      })
+      return
+    }
+
+    setSubmitState({
+      status: 'loading',
+      message: '',
+    })
+
+    try {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: emailServiceId,
+          template_id: emailTemplateId,
+          user_id: emailPublicKey,
+          template_params: {
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+            title: 'New portfolio contact form message',
+            reply_to: formData.email,
+            submitted_at: new Date().toLocaleString(),
+          },
+        }),
+      })
+
+      if (!response.ok) {
+        const errorText = await response.text()
+        throw new Error(errorText || 'Email send failed')
+      }
+
+      setSubmitState({
+        status: 'success',
+        message: 'Your message was sent successfully. It should arrive in your inbox shortly.',
+      })
+      setFormData(initialFormState)
+    } catch (error) {
+      setSubmitState({
+        status: 'error',
+        message:
+          'Your message could not be sent. Please check your EmailJS configuration and try again.',
+      })
+      console.error('Email send failed:', error)
+    }
   }
 
   return (
@@ -48,8 +118,8 @@ function ContactSection() {
         >
           <SectionHeader
             eyebrow="Contact"
-            title="Let’s build something meaningful and well-crafted."
-            description="If you’d like to collaborate on a web product, portfolio-quality frontend, or AI-powered application, I’d love to connect."
+            title="Let's build something meaningful and well-crafted."
+            description="If you'd like to collaborate on a web product, portfolio-quality frontend, or AI-powered application, I'd love to connect."
           />
 
           <Motion.div
@@ -100,8 +170,9 @@ function ContactSection() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                disabled={isSubmitting}
                 placeholder="Your name"
-                className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none transition duration-300 placeholder:text-slate-500 focus:border-cyan-300/40 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.08)]"
+                className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none transition duration-300 placeholder:text-slate-500 focus:border-cyan-300/40 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.08)] disabled:cursor-not-allowed disabled:opacity-70"
                 required
               />
             </Motion.div>
@@ -116,8 +187,9 @@ function ContactSection() {
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
+                disabled={isSubmitting}
                 placeholder="you@example.com"
-                className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none transition duration-300 placeholder:text-slate-500 focus:border-cyan-300/40 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.08)]"
+                className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none transition duration-300 placeholder:text-slate-500 focus:border-cyan-300/40 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.08)] disabled:cursor-not-allowed disabled:opacity-70"
                 required
               />
             </Motion.div>
@@ -131,28 +203,40 @@ function ContactSection() {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
+                disabled={isSubmitting}
                 rows="6"
                 placeholder="Tell me about your idea or collaboration."
-                className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none transition duration-300 placeholder:text-slate-500 focus:border-cyan-300/40 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.08)]"
+                className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 outline-none transition duration-300 placeholder:text-slate-500 focus:border-cyan-300/40 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.08)] disabled:cursor-not-allowed disabled:opacity-70"
                 required
               />
             </Motion.div>
 
             <Motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 pt-2">
-              <Button type="submit">Send Message</Button>
-              <a href="mailto:goutam@example.com" className="text-sm font-medium text-slate-400 transition hover:text-white">
-                goutam@example.com
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </Button>
+              <a
+                href="mailto:sumitku2938k@gmail.com"
+                className="text-sm font-medium text-slate-400 transition hover:text-white"
+              >
+                sumitku2938k@gmail.com
               </a>
             </Motion.div>
           </Motion.form>
 
-          {isSubmitted ? (
+          {submitState.status !== 'idle' ? (
             <Motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-5 rounded-2xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200"
+              className={`mt-5 rounded-2xl px-4 py-3 text-sm ${
+                submitState.status === 'success'
+                  ? 'border border-emerald-400/20 bg-emerald-400/10 text-emerald-200'
+                  : submitState.status === 'error'
+                    ? 'border border-rose-400/20 bg-rose-400/10 text-rose-200'
+                    : 'border border-cyan-400/20 bg-cyan-400/10 text-cyan-100'
+              }`}
             >
-              Message drafted successfully. Replace the placeholder email or connect this form to your preferred backend.
+              {submitState.message || 'Sending your message...'}
             </Motion.div>
           ) : null}
         </Motion.div>
