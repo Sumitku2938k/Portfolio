@@ -3,7 +3,7 @@ import { hoverLift } from '../lib/animations'
 
 function Button({ children, href, variant = 'primary', className = '', ...props }) {
   const baseStyles =
-    'inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold tracking-[0.18em] uppercase transition duration-300 disabled:cursor-not-allowed disabled:opacity-60'
+    'inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold tracking-[0.18em] uppercase transition duration-300'
 
   const variants = {
     primary:
