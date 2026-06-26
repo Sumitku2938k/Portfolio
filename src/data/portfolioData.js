@@ -38,8 +38,8 @@ export const featuredProjects = [
     description:
       'An event management platform where users can explore experiences, register seamlessly, and keep track of schedules from one polished dashboard.',
     tags: ['React', 'Node.js', 'Express.js', 'SQL'],
-    githubUrl: 'https://github.com/',
-    liveUrl: 'https://example.com/',
+    githubUrl: 'https://github.com/Sumitku2938k/EventNexus-2.0',
+    liveUrl: 'https://eventnexus-frontend.vercel.app/',
     accent: 'from-blue-400/30 via-indigo-500/20 to-transparent',
     label: 'Event System',
   },
