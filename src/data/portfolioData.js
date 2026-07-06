@@ -18,8 +18,8 @@ export const featuredProjects = [
     description:
       'A modern travel discovery and booking experience featuring destination browsing, itinerary planning, and streamlined reservation flows.',
     tags: ['React', 'Tailwind CSS', 'Node.js', 'MongoDB'],
-    githubUrl: 'https://github.com/',
-    liveUrl: 'https://example.com/',
+    githubUrl: 'https://github.com/Sumitku2938k/Travira',
+    liveUrl: 'https://travira-dashboard.vercel.app/',
     accent: 'from-cyan-400/30 via-sky-500/20 to-transparent',
     label: 'Travel Platform',
   },
