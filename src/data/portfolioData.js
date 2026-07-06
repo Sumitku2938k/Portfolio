@@ -24,14 +24,14 @@ export const featuredProjects = [
     label: 'Travel Platform',
   },
   {
-    title: 'Medicure',
-    description:
-      'An AI-powered healthcare platform that analyzes symptoms, surfaces likely concerns, and guides users with practical next-step recommendations.',
-    tags: ['React', 'Express.js', 'AI APIs', 'MongoDB'],
-    githubUrl: 'https://github.com/',
-    liveUrl: 'https://example.com/',
-    accent: 'from-violet-400/30 via-fuchsia-500/20 to-transparent',
-    label: 'AI Healthcare',
+    title: 'EduTrace',
+    description: 
+      'An AI-powered smart attendance and behavior analysis system that automates classroom attendance using face recognition and provides teachers with real-time insights into student engagement and classroom analytics.',
+    tags: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Python', 'Flask', 'OpenCV', 'Face Recognition'],
+    githubUrl: 'https://github.com/Sumitku2938k/EduTrace',
+    liveUrl: 'https://your-live-demo.com/',
+    accent: 'from-emerald-400/30 via-cyan-500/20 to-transparent',
+    label: 'AI Smart Attendance',
   },
   {
     title: 'EventNexus',
