@@ -17,7 +17,7 @@ export const featuredProjects = [
     title: 'Travira',
     description:
       'A modern travel discovery and booking experience featuring destination browsing, itinerary planning, and streamlined reservation flows.',
-    tags: ['React', 'Tailwind CSS', 'Node.js', 'MongoDB'],
+    tags: ['Next.js', 'Tailwind CSS', 'Node.js','Express.js', 'MongoDB'],
     githubUrl: 'https://github.com/Sumitku2938k/Travira',
     liveUrl: 'https://travira-dashboard.vercel.app/',
     accent: 'from-cyan-400/30 via-sky-500/20 to-transparent',
@@ -26,18 +26,18 @@ export const featuredProjects = [
   {
     title: 'EduTrace',
     description: 
-      'An AI-powered smart attendance and behavior analysis system that automates classroom attendance using face recognition and provides teachers with real-time insights into student engagement and classroom analytics.',
-    tags: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Python', 'Flask', 'OpenCV', 'Face Recognition'],
+      'AI-powered smart attendance and classroom analytics platform using face recognition to automate attendance and monitor student engagement in real time.',
+    tags: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Python', 'Flask'],
     githubUrl: 'https://github.com/Sumitku2938k/EduTrace',
     liveUrl: 'https://your-live-demo.com/',
     accent: 'from-emerald-400/30 via-cyan-500/20 to-transparent',
-    label: 'AI Smart Attendance',
+    label: 'AI Smart Attendance', 
   },
   {
     title: 'EventNexus',
     description:
       'An event management platform where users can explore experiences, register seamlessly, and keep track of schedules from one polished dashboard.',
-    tags: ['React', 'Node.js', 'Express.js', 'SQL'],
+    tags: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind CSS'],
     githubUrl: 'https://github.com/Sumitku2938k/EventNexus-2.0',
     liveUrl: 'https://eventnexus-frontend.vercel.app/',
     accent: 'from-blue-400/30 via-indigo-500/20 to-transparent',
