@@ -42,7 +42,7 @@ function HeroSection() {
               transition={{ duration: 0.75, delay: 0.15 }}
               className="mt-8 max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-7xl"
             >
-              Goutam
+              Sumit Kumar
               <span className="mt-4 block bg-gradient-to-r from-cyan-300 via-blue-400 to-violet-400 bg-clip-text text-transparent">
                 Full Stack Developer | AI Enthusiast
               </span>
