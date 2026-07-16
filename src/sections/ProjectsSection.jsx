@@ -19,14 +19,14 @@ function ProjectsSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.65, ease: easeOutExpo }}
-        className="mt-14 rounded-[36px] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl sm:p-8 lg:p-10"
+        className="mt-12 rounded-[28px] border border-white/[0.06] bg-white/[0.01] p-6 backdrop-blur-xl sm:p-8 lg:p-10 shadow-[0_30px_70px_rgba(0,0,0,0.4),_inset_0_1px_rgba(255,255,255,0.02)]"
       >
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300/80">Featured Work</p>
-          <h3 className="mt-4 text-2xl font-semibold text-white sm:text-3xl">
+          <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-cyan-400">Featured Work</p>
+          <h3 className="mt-3 text-xl sm:text-3xl font-extrabold tracking-tight text-white leading-snug">
             Three projects, each designed to feel substantial and product-ready
           </h3>
-          <p className="mt-4 text-sm leading-7 text-slate-400 sm:text-base">
+          <p className="mt-4 text-xs sm:text-sm leading-relaxed text-slate-400 font-light">
             Each card below highlights a stronger end-to-end build with clearer visual hierarchy, spacious composition,
             and premium interaction polish.
           </p>

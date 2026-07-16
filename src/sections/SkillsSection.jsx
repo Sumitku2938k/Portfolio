@@ -27,10 +27,10 @@ function SkillsSection() {
             variants={fadeUp}
             whileHover={hoverLift}
             transition={{ duration: 0.35, ease: 'easeOut', delay: index * 0.04 }}
-            className="rounded-[28px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl sm:p-8"
+            className="rounded-[28px] border border-white/[0.06] bg-white/[0.01] p-6 backdrop-blur-xl sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.3),_inset_0_1px_rgba(255,255,255,0.02)]"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300/80">{group.title}</p>
-            <p className="mt-4 text-lg font-medium text-white">{group.description}</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400">{group.title}</p>
+            <p className="mt-4 text-base sm:text-lg font-bold text-white tracking-tight">{group.description}</p>
 
             <Motion.div variants={staggerFast} className="mt-8 space-y-5">
               {group.skills.map((skill) => (
@@ -40,17 +40,17 @@ function SkillsSection() {
                   whileHover={{ scale: 1.01 }}
                   transition={{ duration: 0.25, ease: 'easeOut' }}
                 >
-                  <div className="mb-2 flex items-center justify-between text-sm">
-                    <span className="text-slate-200">{skill.name}</span>
-                    <span className="text-slate-400">{skill.level}%</span>
+                  <div className="mb-2 flex items-center justify-between text-xs sm:text-sm">
+                    <span className="text-slate-300 font-light">{skill.name}</span>
+                    <span className="text-slate-400 font-semibold font-mono text-xs">{skill.level}%</span>
                   </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-white/8">
+                  <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.06] shadow-[inset_0_1px_2px_rgba(0,0,0,0.3)]">
                     <Motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, ease: 'easeOut' }}
-                      className="h-full rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 shadow-[0_0_20px_rgba(34,211,238,0.25)]"
+                      className="h-full rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 shadow-[0_0_12px_rgba(34,211,238,0.4)]"
                     />
                   </div>
                 </Motion.div>
