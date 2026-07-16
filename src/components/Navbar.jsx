@@ -22,14 +22,17 @@ function Navbar({ activeSection, items }) {
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: easeOutExpo }}
-        className={`mx-auto max-w-7xl rounded-full border px-4 py-3 backdrop-blur-2xl transition duration-300 sm:px-6 ${
+        className={`mx-auto max-w-7xl rounded-full border px-4 py-3 backdrop-blur-2xl transition-all duration-300 sm:px-6 ${
           isScrolled
-            ? 'border-white/12 bg-slate-950/75 shadow-[0_20px_60px_rgba(2,6,23,0.45)]'
-            : 'border-white/8 bg-slate-950/45'
+            ? 'border-white/[0.12] bg-[#050816]/85 shadow-[0_20px_50px_rgba(0,0,0,0.5),_inset_0_1px_0_rgba(255,255,255,0.05)]'
+            : 'border-white/[0.06] bg-[#050816]/40'
         }`}
       >
         <div className="flex items-center justify-between gap-4">
-          <a href="#home" className="text-sm font-semibold uppercase tracking-[0.28em] text-white">
+          <a 
+            href="#home" 
+            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.24em] text-white hover:text-cyan-300 transition-colors duration-300"
+          >
             Goutam.dev
           </a>
 
@@ -92,19 +95,24 @@ function Navbar({ activeSection, items }) {
               transition={{ duration: 0.35, ease: 'easeInOut' }}
               className="overflow-hidden md:hidden"
             >
-              <div className="mt-4 space-y-2 border-t border-white/10 pt-4">
-                {items.map((item) => (
-                  <a
-                    key={item.id}
-                    href={`#${item.id}`}
-                    onClick={() => setIsOpen(false)}
-                    className={`block rounded-2xl px-4 py-3 text-sm font-medium ${
-                      activeSection === item.id ? 'bg-cyan-400/10 text-white' : 'text-slate-300'
-                    }`}
-                  >
-                    {item.label}
-                  </a>
-                ))}
+              <div className="mt-4 space-y-1.5 border-t border-white/[0.08] pt-4">
+                {items.map((item) => {
+                  const isActive = activeSection === item.id
+                  return (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      onClick={() => setIsOpen(false)}
+                      className={`block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
+                        isActive
+                          ? 'border border-cyan-500/20 bg-cyan-500/[0.08] text-cyan-200'
+                          : 'border border-transparent text-slate-300 hover:bg-white/[0.04] hover:text-white'
+                      }`}
+                    >
+                      {item.label}
+                    </a>
+                  )
+                })}
               </div>
             </Motion.nav>
           ) : null}
