@@ -27,7 +27,7 @@ function AboutSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
-          className="rounded-[30px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl"
+          className="rounded-[28px] border border-white/[0.06] bg-white/[0.01] p-6 sm:p-8 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.3),_inset_0_1px_rgba(255,255,255,0.02)]"
         >
           <Motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }}>
             <Motion.div variants={fadeUp}>
@@ -45,7 +45,7 @@ function AboutSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
-          className="space-y-6 rounded-[30px] border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl"
+          className="space-y-6 rounded-[28px] border border-white/[0.06] bg-white/[0.01] p-6 sm:p-8 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.3),_inset_0_1px_rgba(255,255,255,0.02)]"
         >
           <Motion.div
             variants={staggerFast}
@@ -54,34 +54,34 @@ function AboutSection() {
             viewport={{ once: true, amount: 0.25 }}
             className="grid gap-5 sm:grid-cols-2"
           >
-            <Motion.div variants={fadeUp} className="rounded-[24px] border border-white/8 bg-slate-950/50 p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80">Focus</p>
-              <p className="mt-4 text-lg font-medium text-white">Full-stack development</p>
-              <p className="mt-3 text-sm leading-7 text-slate-400">
+            <Motion.div variants={fadeUp} className="rounded-2xl border border-white/[0.04] bg-[#020512]/60 p-5 shadow-[inset_0_1px_rgba(255,255,255,0.01)] hover:border-cyan-500/20 transition-all duration-300">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400">Focus</p>
+              <p className="mt-4 text-base sm:text-lg font-bold text-white tracking-tight">Full-stack development</p>
+              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-400 font-light">
                 I enjoy connecting elegant frontend experiences with dependable backend systems.
               </p>
             </Motion.div>
-            <Motion.div variants={fadeUp} className="rounded-[24px] border border-white/8 bg-slate-950/50 p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-300/80">Special Interest</p>
-              <p className="mt-4 text-lg font-medium text-white">AI-powered applications</p>
-              <p className="mt-3 text-sm leading-7 text-slate-400">
+            <Motion.div variants={fadeUp} className="rounded-2xl border border-white/[0.04] bg-[#020512]/60 p-5 shadow-[inset_0_1px_rgba(255,255,255,0.01)] hover:border-violet-500/20 transition-all duration-300">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-violet-400">Special Interest</p>
+              <p className="mt-4 text-base sm:text-lg font-bold text-white tracking-tight">AI-powered applications</p>
+              <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-400 font-light">
                 I’m especially interested in weaving AI into products that solve practical user problems.
               </p>
             </Motion.div>
           </Motion.div>
 
           <Motion.div variants={staggerFast} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }}>
-            <Motion.p variants={fadeUp} className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+            <Motion.p variants={fadeUp} className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-slate-400">
               Core Toolkit
             </Motion.p>
-            <Motion.div variants={staggerFast} className="mt-5 flex flex-wrap gap-3">
+            <Motion.div variants={staggerFast} className="mt-4 flex flex-wrap gap-2.5">
               {skills.map((skill) => (
                 <Motion.span
                   key={skill}
                   variants={fadeUp}
-                  whileHover={{ y: -2, scale: 1.02 }}
-                  transition={{ duration: 0.25, ease: 'easeOut' }}
-                  className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-200"
+                  whileHover={{ y: -2 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                  className="rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-300 hover:border-cyan-500/20 hover:text-white transition-colors duration-300"
                 >
                   {skill}
                 </Motion.span>
