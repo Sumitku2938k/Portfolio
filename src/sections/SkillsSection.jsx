@@ -2,11 +2,10 @@ import { motion as Motion } from 'framer-motion'
 import SectionHeader from '../components/SectionHeader'
 import SectionWrapper from '../components/SectionWrapper'
 import { skillGroups } from '../data/portfolioData'
-import { fadeUp, hoverLift, staggerContainer, staggerFast } from '../lib/animations'
+import { fadeUp, staggerContainer, staggerFast, easeOutExpo, springs } from '../lib/animations'
 
 function SkillsSection() {
   return (
-    //SkillsSection is a bit more complex than the other sections, so I decided to keep it as a separate component instead of lazy loading it. This way, I can ensure that the animations and layout are smooth and responsive without any loading delays.
     <SectionWrapper id="skills" className="pt-24">
       <SectionHeader
         eyebrow="Skills"
@@ -18,16 +17,21 @@ function SkillsSection() {
         variants={staggerContainer}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.15 }}
         className="mt-12 grid gap-6 lg:grid-cols-2"
       >
-        {skillGroups.map((group, index) => (
+        {skillGroups.map((group) => (
           <Motion.article
             key={group.title}
             variants={fadeUp}
-            whileHover={hoverLift}
-            transition={{ duration: 0.35, ease: 'easeOut', delay: index * 0.04 }}
-            className="rounded-[28px] border border-white/[0.06] bg-white/[0.01] p-6 backdrop-blur-xl sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.3),_inset_0_1px_rgba(255,255,255,0.02)]"
+            whileHover={{
+              y: -6,
+              scale: 1.008,
+              borderColor: 'rgba(34, 211, 238, 0.24)',
+              boxShadow: '0 20px 45px rgba(2, 6, 23, 0.5), 0 0 30px rgba(34, 211, 238, 0.05)',
+            }}
+            transition={springs.gentle}
+            className="rounded-[28px] border border-white/[0.06] bg-white/[0.01] p-6 backdrop-blur-xl sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.3),_inset_0_1px_rgba(255,255,255,0.02)] transition-colors duration-300 cursor-default"
           >
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400">{group.title}</p>
             <p className="mt-4 text-base sm:text-lg font-bold text-white tracking-tight">{group.description}</p>
@@ -37,11 +41,11 @@ function SkillsSection() {
                 <Motion.div
                   key={skill.name}
                   variants={fadeUp}
-                  whileHover={{ scale: 1.01 }}
-                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                  whileHover={{ scale: 1.01, x: 2 }}
+                  transition={springs.gentle}
                 >
                   <div className="mb-2 flex items-center justify-between text-xs sm:text-sm">
-                    <span className="text-slate-300 font-light">{skill.name}</span>
+                    <span className="text-slate-350 font-light">{skill.name}</span>
                     <span className="text-slate-400 font-semibold font-mono text-xs">{skill.level}%</span>
                   </div>
                   <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.06] shadow-[inset_0_1px_2px_rgba(0,0,0,0.3)]">
@@ -49,7 +53,7 @@ function SkillsSection() {
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.8, ease: 'easeOut' }}
+                      transition={{ duration: 1.25, ease: easeOutExpo, delay: 0.15 }}
                       className="h-full rounded-full bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600 shadow-[0_0_12px_rgba(34,211,238,0.4)]"
                     />
                   </div>
