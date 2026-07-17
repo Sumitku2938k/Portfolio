@@ -1,17 +1,22 @@
 import { motion as Motion } from 'framer-motion'
 import Button from './Button'
-import { fadeUp } from '../lib/animations'
+import { fadeUp, springs } from '../lib/animations'
 
 function ProjectCard({ project, featured = false }) {
   return (
     <Motion.article
       variants={fadeUp}
-      whileHover={featured ? { y: -6, scale: 1.015 } : { y: -5, scale: 1.01 }}
-      transition={{ type: 'spring', stiffness: 220, damping: 22 }}
-      className={`group relative overflow-hidden rounded-[28px] border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-xl transition-shadow duration-500 ${
-        featured
-          ? 'min-h-[440px] shadow-[0_24px_60px_rgba(2,6,23,0.4)] hover:shadow-[0_32px_90px_rgba(34,211,238,0.12)] sm:p-8'
-          : 'min-h-[230px] shadow-[0_12px_40px_rgba(2,6,23,0.3)] hover:shadow-[0_16px_50px_rgba(34,211,238,0.06)]'
+      whileHover={{
+        y: featured ? -8 : -6,
+        scale: featured ? 1.012 : 1.008,
+        borderColor: 'rgba(34, 211, 238, 0.24)',
+        boxShadow: featured 
+          ? '0 30px 60px -15px rgba(2, 6, 23, 0.7), 0 0 40px -5px rgba(34, 211, 238, 0.08)' 
+          : '0 20px 40px -15px rgba(2, 6, 23, 0.6), 0 0 30px -5px rgba(34, 211, 238, 0.04)',
+      }}
+      transition={springs.gentle}
+      className={`group relative overflow-hidden rounded-[28px] border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-xl transition-[shadow,background-color] duration-500 ${
+        featured ? 'min-h-[440px] sm:p-8' : 'min-h-[230px]'
       }`}
     >
       <div
@@ -20,6 +25,7 @@ function ProjectCard({ project, featured = false }) {
         }`}
       />
       <div className="absolute inset-px rounded-[27px] border border-white/[0.05] bg-[linear-gradient(180deg,rgba(8,11,24,0.65),rgba(3,5,15,0.98))]" />
+
       {featured ? (
         <Motion.div
           animate={{ opacity: [0.35, 0.7, 0.35] }}
@@ -31,7 +37,19 @@ function ProjectCard({ project, featured = false }) {
       <div className="relative flex h-full flex-col">
         <div className="mb-6 flex items-start justify-between gap-4">
           <div>
-            <h3 className={`${featured ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'} font-bold tracking-tight text-white group-hover:text-cyan-300 transition-colors duration-300`}>{project.title}</h3>
+            <h3 className={`${featured ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'} font-bold tracking-tight text-white group-hover:text-cyan-300 transition-colors duration-300 flex items-center gap-1.5`}>
+              <span>{project.title}</span>
+              <Motion.span 
+                className="inline-block text-cyan-300 font-light"
+                variants={{
+                  hidden: { opacity: 0, x: -4 },
+                  show: { opacity: 1, x: 0 }
+                }}
+                transition={springs.gentle}
+              >
+                {/* → */}
+              </Motion.span>
+            </h3>
             {featured ? (
               <p className="mt-1.5 max-w-xs text-[10px] sm:text-xs uppercase tracking-[0.24em] text-cyan-200/70 font-semibold">
                 {project.label || 'Featured Build'}
