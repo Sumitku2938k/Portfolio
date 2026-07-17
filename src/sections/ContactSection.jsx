@@ -4,7 +4,7 @@ import Button from '../components/Button'
 import SectionHeader from '../components/SectionHeader'
 import SectionWrapper from '../components/SectionWrapper'
 import { socialLinks } from '../data/portfolioData'
-import { fadeLeft, fadeRight, fadeUp, staggerFast } from '../lib/animations'
+import { fadeLeft, fadeRight, fadeUp, staggerFast, easeOutExpo, springs } from '../lib/animations'
 
 const initialFormState = {
   name: '',
@@ -18,6 +18,7 @@ const emailPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 function ContactSection() {
   const [formData, setFormData] = useState(initialFormState)
+  const [focusedField, setFocusedField] = useState(null)
   const [submitState, setSubmitState] = useState({
     status: 'idle',
     message: '',
@@ -37,7 +38,7 @@ function ContactSection() {
           status: 'idle',
           message: '',
         }),
-      3000,
+      4000,
     )
 
     return () => window.clearTimeout(timeoutId)
@@ -107,7 +108,7 @@ function ContactSection() {
   }
 
   return (
-    <SectionWrapper id="contact" className="pt-24">
+    <SectionWrapper id="contact" className="pt-24 pb-16">
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <Motion.div
           variants={fadeLeft}
@@ -133,14 +134,22 @@ function ContactSection() {
               <Motion.a
                 key={link.name}
                 variants={fadeUp}
-                whileHover={{ y: -3 }}
+                whileHover={{
+                  y: -4,
+                  borderColor: 'rgba(34, 211, 238, 0.24)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.02)',
+                  color: '#ffffff',
+                }}
+                transition={springs.gentle}
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-between rounded-xl border border-white/[0.05] bg-[#020512]/60 px-5 py-4 text-slate-300 shadow-[inset_0_1px_rgba(255,255,255,0.01)] hover:border-cyan-500/25 hover:bg-white/[0.02] hover:text-white transition-all duration-300"
+                className="group flex items-center justify-between rounded-xl border border-white/[0.05] bg-[#020512]/60 px-5 py-4 text-slate-300 shadow-[inset_0_1px_rgba(255,255,255,0.01)] transition-colors duration-300 cursor-pointer"
               >
                 <span className="text-sm font-medium">{link.name}</span>
-                <span className="text-xs font-bold uppercase tracking-wider text-cyan-400 hover:text-cyan-300">Open</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-cyan-455 group-hover:text-cyan-300 transition-colors duration-300">
+                  Open 
+                </span>
               </Motion.a>
             ))}
           </Motion.div>
@@ -162,14 +171,25 @@ function ContactSection() {
             className="space-y-5"
           >
             <Motion.div variants={fadeUp}>
-              <label htmlFor="name" className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-400">
+              <Motion.label
+                htmlFor="name"
+                animate={{
+                  color: focusedField === 'name' ? '#22d3ee' : '#94a3b8',
+                  x: focusedField === 'name' ? 5 : 0,
+                  letterSpacing: focusedField === 'name' ? '0.12em' : '0.05em',
+                }}
+                transition={{ duration: 0.25, ease: easeOutExpo }}
+                className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-400"
+              >
                 Name
-              </label>
+              </Motion.label>
               <input
                 id="name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                onFocus={() => setFocusedField('name')}
+                onBlur={() => setFocusedField(null)}
                 disabled={isSubmitting}
                 placeholder="Your name"
                 className="w-full rounded-xl border border-white/[0.08] bg-[#020512]/70 px-4 py-3.5 text-slate-100 outline-none transition-all duration-300 placeholder:text-slate-500 focus:border-cyan-400/50 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.12),_inset_0_1px_rgba(255,255,255,0.02)] disabled:cursor-not-allowed disabled:opacity-70"
@@ -178,15 +198,26 @@ function ContactSection() {
             </Motion.div>
 
             <Motion.div variants={fadeUp}>
-              <label htmlFor="email" className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-400">
+              <Motion.label
+                htmlFor="email"
+                animate={{
+                  color: focusedField === 'email' ? '#22d3ee' : '#94a3b8',
+                  x: focusedField === 'email' ? 5 : 0,
+                  letterSpacing: focusedField === 'email' ? '0.12em' : '0.05em',
+                }}
+                transition={{ duration: 0.25, ease: easeOutExpo }}
+                className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-400"
+              >
                 Email
-              </label>
+              </Motion.label>
               <input
                 id="email"
                 name="email"
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
+                onFocus={() => setFocusedField('email')}
+                onBlur={() => setFocusedField(null)}
                 disabled={isSubmitting}
                 placeholder="you@example.com"
                 className="w-full rounded-xl border border-white/[0.08] bg-[#020512]/70 px-4 py-3.5 text-slate-100 outline-none transition-all duration-300 placeholder:text-slate-500 focus:border-cyan-400/50 focus:shadow-[0_0_0_3px_rgba(34,211,238,0.12),_inset_0_1px_rgba(255,255,255,0.02)] disabled:cursor-not-allowed disabled:opacity-70"
@@ -195,14 +226,25 @@ function ContactSection() {
             </Motion.div>
 
             <Motion.div variants={fadeUp}>
-              <label htmlFor="message" className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-400">
+              <Motion.label
+                htmlFor="message"
+                animate={{
+                  color: focusedField === 'message' ? '#22d3ee' : '#94a3b8',
+                  x: focusedField === 'message' ? 5 : 0,
+                  letterSpacing: focusedField === 'message' ? '0.12em' : '0.05em',
+                }}
+                transition={{ duration: 0.25, ease: easeOutExpo }}
+                className="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-400"
+              >
                 Message
-              </label>
+              </Motion.label>
               <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
+                onFocus={() => setFocusedField('message')}
+                onBlur={() => setFocusedField(null)}
                 disabled={isSubmitting}
                 rows="6"
                 placeholder="Tell me about your idea or collaboration."
@@ -226,14 +268,15 @@ function ContactSection() {
 
           {submitState.status !== 'idle' ? (
             <Motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`mt-5 rounded-xl px-4 py-3 text-sm ${
+              initial={{ opacity: 0, y: 12, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, transition: { duration: 0.25 } }}
+              className={`mt-5 rounded-xl px-4 py-3 text-sm border ${
                 submitState.status === 'success'
-                  ? 'border border-emerald-500/20 bg-emerald-500/[0.06] text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.05)]'
+                  ? 'border-emerald-500/20 bg-emerald-500/[0.06] text-emerald-350 shadow-[0_0_15px_rgba(16,185,129,0.05)]'
                   : submitState.status === 'error'
-                    ? 'border border-rose-500/20 bg-rose-500/[0.06] text-rose-300 shadow-[0_0_15px_rgba(239,68,68,0.05)]'
-                    : 'border border-cyan-500/20 bg-cyan-500/[0.06] text-cyan-200'
+                    ? 'border-rose-500/20 bg-rose-500/[0.06] text-rose-350 shadow-[0_0_15px_rgba(239,68,68,0.05)]'
+                    : 'border-cyan-500/20 bg-cyan-500/[0.06] text-cyan-200 shadow-[0_0_15px_rgba(34,211,238,0.05)]'
               }`}
             >
               {submitState.message || 'Sending your message...'}
