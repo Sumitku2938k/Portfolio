@@ -16,7 +16,7 @@ function ProjectCard({ project, featured = false }) {
       }}
       transition={springs.gentle}
       className={`group relative overflow-hidden rounded-[28px] border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-xl transition-[shadow,background-color] duration-500 ${
-        featured ? 'min-h-[440px] sm:p-8' : 'min-h-[230px]'
+        featured ? 'min-h-[380px] sm:min-h-[440px] sm:p-8' : 'min-h-[230px]'
       }`}
     >
       <div
