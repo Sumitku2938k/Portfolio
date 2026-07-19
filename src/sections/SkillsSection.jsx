@@ -18,7 +18,7 @@ function SkillsSection() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.15 }}
-        className="mt-12 grid gap-6 lg:grid-cols-2"
+        className="mt-12 grid gap-6 md:grid-cols-2"
       >
         {skillGroups.map((group) => (
           <Motion.article
