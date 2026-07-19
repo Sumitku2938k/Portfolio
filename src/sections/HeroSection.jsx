@@ -63,7 +63,7 @@ function HeroSection() {
           />
         ))}
 
-        <div className="relative grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] mb-8">
+        <div className="relative grid items-center gap-10 grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] mb-8 lg:mb-12">
           <Motion.div
             variants={containerVariants}
             initial="hidden"
@@ -79,10 +79,10 @@ function HeroSection() {
 
             <Motion.h1
               variants={itemVariants}
-              className="mt-6 max-w-3xl text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-7xl font-sans"
+              className="mt-6 max-w-3xl text-3xl font-extrabold leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-7xl font-sans"
             >
               Sumit Kumar
-              <span className="mt-3 block bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 bg-clip-text text-transparent font-extrabold leading-tight">
+              <span className="mt-2 block bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 bg-clip-text text-transparent font-extrabold text-2xl sm:text-4xl lg:text-6xl leading-tight">
                 Full Stack Developer | AI Enthusiast
               </span>
             </Motion.h1>
@@ -139,7 +139,7 @@ function HeroSection() {
                 </div>
               </div>
 
-              <div className="mt-8 grid gap-4 grid-cols-3">
+              <div className="mt-8 grid gap-3 grid-cols-1 min-[420px]:grid-cols-3">
                 {stats.map((stat) => (
                   <Motion.div
                     key={stat.label}
@@ -160,7 +160,7 @@ function HeroSection() {
                     AI + Full Stack
                   </span>
                 </div>
-                <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-slate-300">
+                <div className="mt-4 grid grid-cols-1 min-[360px]:grid-cols-2 gap-2 text-xs text-slate-300">
                   <Motion.div
                     whileHover={{ scale: 1.02, x: 2, borderColor: 'rgba(34, 211, 238, 0.15)', color: '#ffffff' }}
                     transition={springs.gentle}
@@ -203,7 +203,7 @@ function HeroSection() {
           onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
         >
           <span className="text-[9px] font-bold uppercase tracking-[0.24em] text-slate-500 hover:text-cyan-400 transition-colors duration-300">Scroll</span>
-          <div className="h-7 w-4.5 rounded-full border border-slate-500/50 flex justify-center p-1">
+          <div className="h-7 w-[18px] rounded-full border border-slate-500/50 flex justify-center p-1">
             <Motion.div
               animate={{ y: [0, 8, 0], opacity: [1, 0, 1] }}
               transition={{
