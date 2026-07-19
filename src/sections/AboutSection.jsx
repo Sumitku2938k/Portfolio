@@ -21,7 +21,7 @@ const skills = [
 function AboutSection() {
   return (
     <SectionWrapper id="about" className="pt-24">
-      <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr]">
+      <div className="grid gap-10 md:grid-cols-[0.92fr_1.08fr]">
         <Motion.div
           variants={fadeLeft}
           initial="hidden"
