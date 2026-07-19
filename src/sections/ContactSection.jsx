@@ -109,7 +109,7 @@ function ContactSection() {
 
   return (
     <SectionWrapper id="contact" className="pt-24 pb-16">
-      <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr]">
         <Motion.div
           variants={fadeLeft}
           initial="hidden"
@@ -254,12 +254,12 @@ function ContactSection() {
             </Motion.div>
 
             <Motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 pt-2">
-              <Button type="submit" disabled={isSubmitting} className="px-5 py-3">
+              <Button type="submit" disabled={isSubmitting} className="px-5 py-3 shrink-0">
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </Button>
               <a
                 href="mailto:sumitku2938k@gmail.com"
-                className="text-sm font-medium text-slate-400 hover:text-cyan-300 transition-colors duration-300"
+                className="min-w-0 break-all text-sm font-medium text-slate-400 hover:text-cyan-300 transition-colors duration-300"
               >
                 sumitku2938k@gmail.com
               </a>
