@@ -37,7 +37,7 @@ function ProjectsSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
-          className="mx-auto mt-10 grid max-w-6xl gap-8 lg:grid-cols-2 xl:grid-cols-3"
+          className="mx-auto mt-10 grid max-w-6xl gap-8 sm:grid-cols-2 lg:grid-cols-3"
         >
           {featuredProjects.map((project) => (
             <ProjectCard key={project.title} project={project} featured />
