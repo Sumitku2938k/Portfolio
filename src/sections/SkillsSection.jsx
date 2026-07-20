@@ -1,4 +1,5 @@
-import { motion as Motion } from 'framer-motion'
+import { memo } from 'react'
+import { m as Motion } from 'framer-motion'
 import SectionHeader from '../components/SectionHeader'
 import SectionWrapper from '../components/SectionWrapper'
 import { skillGroups } from '../data/portfolioData'
@@ -67,4 +68,4 @@ function SkillsSection() {
   )
 }
 
-export default SkillsSection
+export default memo(SkillsSection)
