@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
-import { AnimatePresence, motion as Motion } from 'framer-motion'
+import { AnimatePresence, LazyMotion, domMax, m as Motion } from 'framer-motion'
 import BackToTop from './components/BackToTop'
 import Loader from './components/Loader'
 import Navbar from './components/Navbar'
@@ -57,7 +57,7 @@ function App() {
   }, [])
 
   return (
-    <>
+    <LazyMotion features={domMax} strict>
       <AnimatePresence mode="wait">{isLoading ? <Loader key="loader" /> : null}</AnimatePresence>
 
       {!isLoading ? (
@@ -85,7 +85,7 @@ function App() {
           <BackToTop />
         </Motion.div>
       ) : null}
-    </>
+    </LazyMotion>
   )
 }
 
