@@ -1,4 +1,5 @@
-import { motion as Motion } from 'framer-motion'
+import { memo } from 'react'
+import { m as Motion } from 'framer-motion'
 import ProjectCard from '../components/ProjectCard'
 import SectionHeader from '../components/SectionHeader'
 import SectionWrapper from '../components/SectionWrapper'
@@ -48,4 +49,4 @@ function ProjectsSection() {
   )
 }
 
-export default ProjectsSection
+export default memo(ProjectsSection)
