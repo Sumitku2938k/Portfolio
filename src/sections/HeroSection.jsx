@@ -1,4 +1,5 @@
-import { motion as Motion } from 'framer-motion'
+import { memo } from 'react'
+import { m as Motion } from 'framer-motion'
 import Button from '../components/Button'
 import SectionWrapper from '../components/SectionWrapper'
 import { stats } from '../data/portfolioData'
@@ -139,9 +140,9 @@ function HeroSection() {
                 </div>
               </div>
 
-              <div className="mt-8 grid gap-3 grid-cols-1 min-[420px]:grid-cols-3">
+              <ul className="mt-8 grid gap-3 grid-cols-1 min-[420px]:grid-cols-3 list-none p-0">
                 {stats.map((stat) => (
-                  <Motion.div
+                  <Motion.li
                     key={stat.label}
                     whileHover={{ y: -3, borderColor: 'rgba(34, 211, 238, 0.25)', backgroundColor: 'rgba(255,255,255,0.02)' }}
                     transition={springs.gentle}
@@ -149,9 +150,9 @@ function HeroSection() {
                   >
                     <p className="text-xl sm:text-2xl font-bold text-white font-mono tracking-tight">{stat.value}</p>
                     <p className="mt-2 text-[10px] sm:text-xs leading-snug text-slate-400 font-light">{stat.label}</p>
-                  </Motion.div>
+                  </Motion.li>
                 ))}
-              </div>
+              </ul>
 
               <div className="mt-6 rounded-xl border border-white/[0.05] bg-[linear-gradient(135deg,rgba(34,211,238,0.06),rgba(99,102,241,0.03),rgba(3,6,15,0.8))] p-4 shadow-[inset_0_1px_rgba(255,255,255,0.02)]">
                 <div className="flex items-center justify-between text-xs text-slate-350">
@@ -160,47 +161,48 @@ function HeroSection() {
                     AI + Full Stack
                   </span>
                 </div>
-                <div className="mt-4 grid grid-cols-1 min-[360px]:grid-cols-2 gap-2 text-xs text-slate-300">
-                  <Motion.div
+                <ul className="mt-4 grid grid-cols-1 min-[360px]:grid-cols-2 gap-2 text-xs text-slate-300 list-none p-0">
+                  <Motion.li
                     whileHover={{ scale: 1.02, x: 2, borderColor: 'rgba(34, 211, 238, 0.15)', color: '#ffffff' }}
                     transition={springs.gentle}
                     className="rounded-lg border border-white/[0.03] bg-white/[0.01] p-3 font-light transition-all duration-300 cursor-default"
                   >
                     React interfaces with premium UX
-                  </Motion.div>
-                  <Motion.div
+                  </Motion.li>
+                  <Motion.li
                     whileHover={{ scale: 1.02, x: 2, borderColor: 'rgba(34, 211, 238, 0.15)', color: '#ffffff' }}
                     transition={springs.gentle}
                     className="rounded-lg border border-white/[0.03] bg-white/[0.01] p-3 font-light transition-all duration-300 cursor-default"
                   >
                     Backend systems with clean APIs
-                  </Motion.div>
-                  <Motion.div
+                  </Motion.li>
+                  <Motion.li
                     whileHover={{ scale: 1.02, x: 2, borderColor: 'rgba(34, 211, 238, 0.15)', color: '#ffffff' }}
                     transition={springs.gentle}
                     className="rounded-lg border border-white/[0.03] bg-white/[0.01] p-3 font-light transition-all duration-300 cursor-default"
                   >
                     Database-driven web apps
-                  </Motion.div>
-                  <Motion.div
+                  </Motion.li>
+                  <Motion.li
                     whileHover={{ scale: 1.02, x: 2, borderColor: 'rgba(34, 211, 238, 0.15)', color: '#ffffff' }}
                     transition={springs.gentle}
                     className="rounded-lg border border-white/[0.03] bg-white/[0.01] p-3 font-light transition-all duration-300 cursor-default"
                   >
                     AI integration for real products
-                  </Motion.div>
-                </div>
+                  </Motion.li>
+                </ul>
               </div>
             </Motion.div>
           </Motion.div>
         </div>
 
-        <Motion.div
+        <Motion.button
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.6 }}
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 cursor-pointer select-none"
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 cursor-pointer select-none bg-transparent border-none outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050816] rounded-lg p-1"
           onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+          aria-label="Scroll to About section"
         >
           <span className="text-[9px] font-bold uppercase tracking-[0.24em] text-slate-500 hover:text-cyan-400 transition-colors duration-300">Scroll</span>
           <div className="h-7 w-[18px] rounded-full border border-slate-500/50 flex justify-center p-1">
@@ -214,10 +216,10 @@ function HeroSection() {
               className="h-1 w-1 rounded-full bg-cyan-400"
             />
           </div>
-        </Motion.div>
+        </Motion.button>
       </div>
     </SectionWrapper>
   )
 }
 
-export default HeroSection
+export default memo(HeroSection)
