@@ -1,4 +1,5 @@
-import { motion as Motion } from 'framer-motion'
+import { memo } from 'react'
+import { m as Motion } from 'framer-motion'
 import SectionWrapper from '../components/SectionWrapper'
 import { easeOutExpo } from '../lib/animations'
 
@@ -19,4 +20,4 @@ function FooterSection() {
   )
 }
 
-export default FooterSection
+export default memo(FooterSection)
