@@ -1,4 +1,5 @@
-import { motion as Motion } from 'framer-motion'
+import { memo } from 'react'
+import { m as Motion } from 'framer-motion'
 import SectionHeader from '../components/SectionHeader'
 import SectionWrapper from '../components/SectionWrapper'
 import { fadeLeft, fadeRight, fadeUp, staggerContainer, staggerFast, springs } from '../lib/animations'
@@ -86,9 +87,9 @@ function AboutSection() {
             <Motion.p variants={fadeUp} className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-slate-400 select-none">
               Core Toolkit
             </Motion.p>
-            <Motion.div variants={staggerFast} className="mt-4 flex flex-wrap gap-2.5">
+            <Motion.ul variants={staggerFast} className="mt-4 flex flex-wrap gap-2.5 list-none p-0">
               {skills.map((skill) => (
-                <Motion.span
+                <Motion.li
                   key={skill}
                   variants={fadeUp}
                   whileHover={{ y: -3, scale: 1.04, borderColor: 'rgba(34, 211, 238, 0.3)', color: '#ffffff' }}
@@ -96,9 +97,9 @@ function AboutSection() {
                   className="rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-300 transition-colors duration-300 cursor-default"
                 >
                   {skill}
-                </Motion.span>
+                </Motion.li>
               ))}
-            </Motion.div>
+            </Motion.ul>
           </Motion.div>
         </Motion.div>
       </div>
@@ -106,4 +107,4 @@ function AboutSection() {
   )
 }
 
-export default AboutSection
+export default memo(AboutSection)
