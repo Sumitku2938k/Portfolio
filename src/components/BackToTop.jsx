@@ -1,4 +1,4 @@
-import { AnimatePresence, motion as Motion } from 'framer-motion'
+import { AnimatePresence, m as Motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { easeOutExpo } from '../lib/animations'
 
